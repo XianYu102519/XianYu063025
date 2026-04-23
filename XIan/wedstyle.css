@@ -1,0 +1,496 @@
+/* Google Fonts（一定要最上面） */
+@import url('https://fonts.googleapis.com/css2?family=Knewave&display=swap');
+
+/* 基本重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Sriracha';
+    src: url('fonts/Sriracha.woff2') format('woff2'),
+         url('fonts/Sriracha.woff') format('woff');
+}
+
+/* 全域設定 */
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: "Sekuya", system-ui;
+    background-color: #c1c3c6;
+
+    /* 背景 */
+    background-image: url('image/下載.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    color: #135a95;
+    line-height: 1.6;
+}
+
+.sekuya-regular {
+  font-family: "Sekuya", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+
+/* 內容容器（取代 body width） */
+.container {
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 圖片通用 */
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* 動畫 */
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fillBar {
+    from { width: 0; }
+}
+
+@keyframes shine {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100%); }
+}
+
+/* ===== 動畫基礎（滾動觸發用） ===== */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== 導覽列強化 ===== */
+nav {
+    backdrop-filter: blur(10px);
+}
+
+/* 滑動高亮 */
+nav a.active {
+    color: #153e8e;
+    border-bottom: 3px solid #153e8e;
+}
+
+/* ===== 卡片升級 ===== */
+section,
+article.experience-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+section:hover,
+article.experience-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* ===== 技能條（滾動才動） ===== */
+.bar-fill {
+    width: 0; /* 一開始是0 */
+}
+
+/* 啟動後才跑 */
+.bar-fill.active {
+    animation: fillBar 1.5s ease-out forwards;
+}
+
+/* ===== 頭像 hover ===== */
+aside img {
+    transition: transform 0.4s ease;
+}
+
+aside img:hover {
+    transform: scale(1.05) rotate(1deg);
+}
+
+/* ===== 標題微動畫 ===== */
+h2 {
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    width: 0;
+    height: 3px;
+    background: #153e8e;
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.5s;
+}
+
+section:hover h2::after {
+    width: 60%;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 導覽列 */
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #cbe2f1;
+    padding: 15px 0;
+    border-radius: 8px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    animation: slideDown 0.8s ease-out;
+}
+
+nav a {
+    margin: 0 20px;
+    text-decoration: none;
+    color: #1056b2;
+    font-weight: bold;
+    font-size: 22px;
+    transition: transform 0.2s, color 0.2s;
+}
+
+nav a:hover {
+    color: #153e8e;
+    transform: scale(1.1);
+}
+
+/* 區塊 */
+section {
+    padding: 30px;
+    margin: 20px 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* 個人區 */
+section.profile {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: flex-start;
+
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* 左側 */
+aside {
+    flex: 1;
+    min-width: 250px;
+    text-align: center;
+}
+
+aside img {
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    margin-bottom: 15px;
+}
+
+aside h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+aside a,
+aside p {
+    font-size: 25px;
+    color: #2a3e57;
+    margin: 5px 0;
+}
+
+/* 右側 */
+#about {
+    flex: 2;
+    min-width: 300px;
+}
+
+#about h1 {
+    font-family: "Knewave", system-ui;
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+#about p {
+    font-size: 25px;
+}
+
+/* 標題 */
+h2 {
+    font-size: 40px;
+    font-family: "Sekuya", system-ui;
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #7f9aac;
+    padding-bottom: 10px;
+}
+
+/* 技能條外層 */
+.skills-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; /* 增加間距讓 30px 的字不擁擠 */
+}
+
+.skills-bar span {
+    width: 120px; 
+    font-size: 30px;
+    font-weight: bold;
+    color: #1056b2;
+}
+
+.bar {
+    flex-grow: 1;
+    height: 16px; /* 稍微加高，視覺比例更協調 */
+    background-color: #908a8a;
+    border-radius: 8px;
+    margin-left: 15px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* 進度條填滿動畫 */
+@keyframes fillBar {
+    from { width: 0; }
+    /* to 不需要寫，它會自動抓取你 HTML style 裡的 width */
+}
+
+.bar-fill {
+    height: 100%;
+    background-color: #153e8e;
+    border-radius: 8px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0; /* 預設為 0，靠動畫跑向目標 */
+    
+    /* 移除 transition，改用 animation */
+    animation: fillBar 1.5s ease-out forwards;
+}
+
+/* 閃爍光影效果 */
+.bar-fill::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: shine 2s infinite; /* 改為無限循環或特定次數 */
+}
+
+@keyframes shine {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100%); }
+}
+
+/* --- 設定時間差（讓技能一個一個跑出來） --- */
+.skills-bar:nth-of-type(1) .bar-fill { animation-delay: 0.2s; }
+.skills-bar:nth-of-type(2) .bar-fill { animation-delay: 0.4s; }
+.skills-bar:nth-of-type(3) .bar-fill { animation-delay: 0.6s; }
+.skills-bar:nth-of-type(4) .bar-fill { animation-delay: 0.8s; }
+
+/* 經歷 */
+/* 子分類標題樣式 */
+.category-subtitle {
+    font-size: 34px;
+    color: #153e8e;
+    background-color: rgba(203, 226, 241, 0.6);
+    padding: 10px 25px;
+    border-radius: 50px;
+    display: inline-block;
+    margin: 30px 0 20px 0;
+    border-left: 10px solid #153e8e;
+}
+
+/* 經歷標題（點擊區）樣式 */
+summary.experience-item-title {
+    font-size: 30px; /* 字體放大 */
+    font-weight: bold;
+    color: #0f1e38;
+    padding: 15px;
+    cursor: pointer;
+    list-style: none; /* 隱藏預設箭頭 */
+    transition: all 0.3s ease;
+}
+
+/* 隱藏 Chrome/Safari 預設箭頭 */
+summary::-webkit-details-marker {
+    display: none;
+}
+
+/* 滑鼠移入標題時縮放 */
+summary:hover {
+    transform: scale(1.03);
+    color: #153e8e;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+}
+
+/* 展開後的內容容器 */
+.exp-content {
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+    margin-top: 10px;
+    line-height: 1.8;
+}
+
+.exp-content p, .exp-content li {
+    font-size: 24px; /* 內文字體也放大 */
+    color: #333;
+}
+
+/* 子分類標題樣式 */
+.category-subtitle {
+    font-size: 32px;
+    color: #153e8e;
+    background-color: #e3f2fd;
+    padding: 10px 20px;
+    border-radius: 50px;
+    display: inline-block;
+    margin: 20px 0;
+    border-left: 10px solid #153e8e;
+}
+
+/* 經歷區塊的分類大標題 (校內經歷 / 校外經歷) */
+.category-subtitle {
+    font-size: 36px; /* 放大字體 */
+    color: #153e8e;
+    transition: transform 0.3s ease; /* 讓縮放變順滑 */
+    cursor: default;
+}
+
+/* 每個具體項目的標題 (例如：跆拳道社) */
+.experience-item-title {
+    font-size: 32px; /* 放大項目標題 */
+    color: #0f1e38;
+    display: inline-block; /* 必須設定為 inline-block 縮放才有效 */
+    transition: all 0.3s ease; /* 設定轉場時間 */
+}
+
+/* 當滑鼠移上去時標題縮放 (Hover Effect) */
+.experience-item:hover .experience-item-title {
+    transform: scale(1.1); /* 放大 1.1 倍 */
+    color: #1a73e8;        /* 順便變個色，更有互動感 */
+    padding-left: 10px;    /* 稍微往右彈一點 */
+}
+
+/* 讓分類之間有更多間距 */
+.exp-category {
+    margin-bottom: 50px;
+}
+
+/* 稍微縮小經歷項目的標題，讓層次感更明顯 (h3 -> h4) */
+h4.experience-item-title {
+    font-size: 28px;
+    color: #0f1e38;
+    margin-bottom: 12px;
+}
+
+.category-subtitle {
+    font-size: 30px;
+    color: #153e8e;
+    background-color: rgba(203, 226, 241, 0.5); /* 淡淡的淺藍底色 */
+    padding: 10px 25px;
+    border-radius: 30px;
+    margin: 30px 0 20px 0;
+    display: inline-block;
+    border-left: 10px solid #153e8e;
+}
+
+
+/* 延遲動畫 */
+article.experience-item:nth-of-type(1) { animation-delay: 0.3s; }
+article.experience-item:nth-of-type(2) { animation-delay: 0.5s; }
+article.experience-item:nth-of-type(3) { animation-delay: 0.7s; }
+
+/* 圖片 */
+.experience-photos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.experience-photos img {
+    width: calc(50% - 10px);
+    min-width: 250px;
+    border-radius: 8px;
+}
+
+/* footer */
+footer {
+    background-color: #98d1eb;
+    text-align: center;
+    padding: 25px;
+    border-radius: 8px;
+}
+
+footer p {
+    font-size: 20px;
+}
+
+footer a {
+    color: #3e4f5e;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* RWD */
+@media (max-width: 768px) {
+
+    body {
+        background-attachment: scroll;
+    }
+
+    section.profile {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .experience-photos img {
+        width: 100%;
+    }
+
+    nav a {
+        font-size: 18px;
+        margin: 0 10px;
+    }
+}
